@@ -2,13 +2,13 @@
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
-require 'gem_name/version'
+require 'spree_shipping_by_weight/version'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'gem_name'
-  s.version     = GemName::VERSION
-  s.summary     = 'GemName'
+  s.name        = 'spree_shipping_by_weight'
+  s.version     = SpreeShippingByWeight::VERSION
+  s.summary     = 'SpreeShippingByWeight'
   s.description = s.summary
   s.required_ruby_version = '>= 2.7.0'
 
