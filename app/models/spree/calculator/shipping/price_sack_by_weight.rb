@@ -35,7 +35,9 @@ module Spree
       def order_total(package)
         order = package.order
         return total(package.contents) unless order
-        order.item_total + order.promo_total + order.savings_plan_total
+        total = order.item_total + order.promo_total
+        total += order.savings_plan_total if order.respond_to?(:savings_plan_total)
+        total
       end
     end
   end
