@@ -12,11 +12,22 @@ module SpreeShippingByWeight
     end
 
 
+    initializer "let the main autoloader ignore this engine's overrides" do
+      overrides = root.join("app/overrides")
+      Rails.autoloaders.main.ignore(overrides)
+    end
+
     config.after_initialize do
       config.spree.calculators.shipping_methods += [
         Spree::Calculator::Shipping::ByWeight,
         Spree::Calculator::Shipping::PriceSackByWeight
       ]
+    end
+
+    config.to_prepare do
+      Dir.glob(File.join(File.dirname(__FILE__), "../../app/overrides/*.rb")) do |c|
+        load(c)
+      end
     end
   end
 end
