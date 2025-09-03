@@ -27,12 +27,13 @@ module Spree
     end
 
     def compute_from_weight(weight)
+      Rails.logger.warn "compute_from_weight: #{weight.class} #{weight}: #{rates.inspect}"
       rates.each do |rate|
         if weight <= rate[0]
           return rate[1]
         end
       end
-      fail "Package weight #{weight} too high for ByWeight shipping!"
+      100000
     end
   end
 end
